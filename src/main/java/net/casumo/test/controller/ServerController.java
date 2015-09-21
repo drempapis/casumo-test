@@ -17,7 +17,7 @@ public class ServerController {
     private static final Logger logger = LoggerFactory.getLogger(ServerController.class);
 
     @RequestMapping(value = "/test", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public String testPost() {
         return "done";
     }
