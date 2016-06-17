@@ -1,4 +1,4 @@
-package net.casumo.test.exception;
+package net.casumo.test.controller.response;
 
 public final class ExceptionResponse {
 

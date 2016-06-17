@@ -2,506 +2,199 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
-
-<groupId>net.casumo.test</groupId>
-<artifactId>casumo-test</artifactId>
-<version>0.1</version>
-<packaging>war</packaging>
-<name>Casumo Test</name>
-
-<description>Bee Square Sandbox is a game-related service framework and infrastructure stack that provides the
-    foundations for studio games.
-</description>
-<url>https://github.com/BeeSquareNet/BeePlatform</url>
-<inceptionYear>2015</inceptionYear>
-<organization>
-    <name>BeeSquare</name>
-    <url>http://www.beesquare.net</url>
-</organization>
-
-<scm>
-    <url>https://github.com/BeeSquareNet/BeePlatform</url>
-</scm>
-
-<developers>
-    <developer>
-        <id>fcogama</id>
-        <name>Francisco Manuel Muñoz Gama</name>
-        <email>francisco@beesquare.net</email>
-        <organization>BeeSquare</organization>
-        <roles>
-            <role>Platform Engineering</role>
-        </roles>
-        <timezone>+1</timezone>
-    </developer>
-</developers>
-
-<licenses>
-    <license>
-        <name>Copyright © 2015</name>
-        <comments>Bee Square © 2015, the game names and related marks are trade marks of Bee Square Games
-            All rights reserved.
-        </comments>
-    </license>
-</licenses>
-
-<issueManagement>
-    <system>Github</system>
-    <url>https://github.com/BeeSquareNet/BeePlatform/issues</url>
-</issueManagement>
-
-<properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java-version>1.8</java-version>
-
-    <servlet-api-version>3.1.0</servlet-api-version>
-    <maven-compiler-plugin-version>3.3</maven-compiler-plugin-version>
-    <jetty-maven-plugin-version>9.3.0.M2</jetty-maven-plugin-version>
-
-    <spring-framework-version>4.2.0.RELEASE</spring-framework-version>
-
-    <!-- Not used yet
-    <spring-social-version>1.1.2.RELEASE</spring-social-version>
-    <spring-facebook-version>2.0.1.RELEASE</spring-facebook-version>
-    <spring-twitter-version>1.1.0.RELEASE</spring-twitter-version>
-    -->
-
-    <spring-data-redis-version>1.5.2.RELEASE</spring-data-redis-version>
-    <spring-data-cassandra-version>1.2.2.RELEASE</spring-data-cassandra-version>
-    <spring-data-elasticsearch-version>1.2.0.RELEASE</spring-data-elasticsearch-version>
-    <spring-data-mongodb-version>1.7.2.RELEASE</spring-data-mongodb-version>
-
-    <shiro-all-version>1.2.4</shiro-all-version>
-
-    <org.slf4j-version>1.7.12</org.slf4j-version>
-    <log4j-version>1.2.17</log4j-version>
-
-    <com.fasterxml.jackson-version>2.6.1</com.fasterxml.jackson-version>
-    <org.apache.httpclient-version>4.5</org.apache.httpclient-version>
-
-    <gson-version>2.3.1</gson-version>
-    <guava-version>18.0</guava-version>
-    <jedis-version>2.7.3</jedis-version>
-    <commons-io-version>2.4</commons-io-version>
-
-    <aspectj.version>1.8.6</aspectj.version>
-
-</properties>
-
-<dependencies>
-
-    <!-- Servlet -->
-    <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>${servlet-api-version}</version>
-        <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-servlets</artifactId>
-        <version>9.3.2.v20150730</version>
-    </dependency>
-
-    <!-- Spring -->
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>${spring-framework-version}</version>
-        <exclusions>
-            <!-- Exclude Commons Logging in favor of SLF4j -->
-            <exclusion>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-            </exclusion>
-        </exclusions>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-test</artifactId>
-        <version>${spring-framework-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-web</artifactId>
-        <version>4.2.0.RELEASE</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-webmvc</artifactId>
-        <version>4.0.4.RELEASE</version>
-    </dependency>
-
-    <!-- Not used yet
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-tx</artifactId>
-        <version>${spring-framework-version}</version>
-    </dependency>
-    -->
-
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-aspects</artifactId>
-        <version>${spring-framework-version}</version>
-        <scope>runtime</scope>
-    </dependency>
-
-    <!-- Not used yet
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-orm</artifactId>
-        <version>${spring-framework-version}</version>
-        <scope>runtime</scope>
-    </dependency>
-    -->
-
-    <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-redis</artifactId>
-        <version>${spring-data-redis-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-cassandra</artifactId>
-        <version>${spring-data-cassandra-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-elasticsearch</artifactId>
-        <version>${spring-data-elasticsearch-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-mongodb</artifactId>
-        <version>${spring-data-mongodb-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework.amqp</groupId>
-        <artifactId>spring-rabbit</artifactId>
-        <version>1.4.5.RELEASE</version>
-    </dependency>
-
-    <!-- AspectJ dependencies -->
-
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-aop</artifactId>
-        <version>${spring-framework-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.aspectj</groupId>
-        <artifactId>aspectjrt</artifactId>
-        <version>${aspectj.version}</version>
-        <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-        <groupId>org.aspectj</groupId>
-        <artifactId>aspectjtools</artifactId>
-        <version>${aspectj.version}</version>
-    </dependency>
-
-
-    <!-- Social -->
-    <!--
-    <dependency>
-        <groupId>org.springframework.social</groupId>
-        <artifactId>spring-social-config</artifactId>
-        <version>${spring-social-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework.social</groupId>
-        <artifactId>spring-social-facebook</artifactId>
-        <version>${spring-facebook-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework.social</groupId>
-        <artifactId>spring-social-core</artifactId>
-        <version>${spring-social-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework.social</groupId>
-        <artifactId>spring-social-twitter</artifactId>
-        <version>${spring-twitter-version}</version>
-    </dependency>
-    -->
-
-    <!-- Logging -->
-    <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>${org.slf4j-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>jcl-over-slf4j</artifactId>
-        <version>${org.slf4j-version}</version>
-        <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-log4j12</artifactId>
-        <version>${org.slf4j-version}</version>
-        <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-        <groupId>log4j</groupId>
-        <artifactId>log4j</artifactId>
-        <version>${log4j-version}</version>
-        <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-        <groupId>org.graylog2</groupId>
-        <artifactId>gelfj</artifactId>
-        <version>1.1.7</version>
-        <scope>compile</scope>
-    </dependency>
-
-    <!-- core -->
-    <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-core</artifactId>
-        <version>${com.fasterxml.jackson-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>${com.fasterxml.jackson-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-annotations</artifactId>
-        <version>${com.fasterxml.jackson-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>com.fasterxml.jackson.datatype</groupId>
-        <artifactId>jackson-datatype-guava</artifactId>
-        <version>${com.fasterxml.jackson-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>com.fasterxml.jackson.datatype</groupId>
-        <artifactId>jackson-datatype-joda</artifactId>
-        <version>${com.fasterxml.jackson-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>com.fasterxml.jackson.datatype</groupId>
-        <artifactId>jackson-datatype-jdk8</artifactId>
-        <version>${com.fasterxml.jackson-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>com.fasterxml.jackson.datatype</groupId>
-        <artifactId>jackson-datatype-jsr310</artifactId>
-        <version>2.5.3</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.codehaus.jackson</groupId>
-        <artifactId>jackson-mapper-asl</artifactId>
-        <version>1.9.13</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient</artifactId>
-        <version>${org.apache.httpclient-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>com.google.code.gson</groupId>
-        <artifactId>gson</artifactId>
-        <version>${gson-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>${guava-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>commons-io</groupId>
-        <artifactId>commons-io</artifactId>
-        <version>${commons-io-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>redis.clients</groupId>
-        <artifactId>jedis</artifactId>
-        <version>${jedis-version}</version>
-    </dependency>
-
-    <!-- Test -->
-    <dependency>
-        <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-all</artifactId>
-        <version>1.3</version>
-        <scope>test</scope>
-    </dependency>
-
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.12</version>
-        <scope>test</scope>
-    </dependency>
-
-    <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-all</artifactId>
-        <version>1.10.19</version>
-        <!--<scope>test</scope>--> <!-- intentionally commentted out -->
-    </dependency>
-
-    <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>3.4</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-math3</artifactId>
-        <version>3.5</version>
-    </dependency>
-
-    <!-- Others -->
-    <dependency>
-        <groupId>org.apache.shiro</groupId>
-        <artifactId>shiro-all</artifactId>
-        <version>${shiro-all-version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>com.google.api-client</groupId>
-        <artifactId>google-api-client</artifactId>
-        <version>1.20.0</version>
-    </dependency>
-
-    <dependency>
-        <groupId>com.google.apis</groupId>
-        <artifactId>google-api-services-oauth2</artifactId>
-        <version>v2-rev93-1.20.0</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.jsondoc</groupId>
-        <artifactId>jsondoc-core</artifactId>
-        <version>1.1.15</version>
-    </dependency>
-</dependencies>
-
-<repositories>
-    <repository>
-        <id>spring-snapshots</id>
-        <name>Spring Snapshots</name>
-        <url>http://repo.spring.io/snapshot</url>
-        <snapshots>
-            <enabled>true</enabled>
-        </snapshots>
-    </repository>
-
-    <repository>
-        <id>jvnet-nexus-releases</id>
-        <name>jvnet-nexus-releases</name>
-        <url>https://maven.java.net/content/repositories/releases/</url>
-    </repository>
-
-    <repository>
-        <id>repository.jboss.org</id>
-        <name>JBoss Repository for Maven</name>
-        <url>http://repository.jboss.org/nexus/content/groups/public/</url>
-    </repository>
-</repositories>
-
-<profiles>
-    <profile>
-        <id>localhost</id>
-        <activation>
-            <activeByDefault>true</activeByDefault>
-        </activation>
-        <properties>
-            <target-platform>localhost</target-platform>
-            <maven.war.webxml>src/main/webapp/WEB-INF/web.xml</maven.war.webxml>
-        </properties>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>2.18.1</version>
-                    <executions>
-                        <execution>
-                            <id>integration-test</id>
-                            <goals>
-                                <goal>integration-test</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>verify</id>
-                            <goals>
-                                <goal>verify</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-</profiles>
-
-<build>
-    <plugins>
-        <plugin>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven-compiler-plugin-version}</version>
-            <configuration>
-                <source>${java-version}</source>
-                <target>${java-version}</target>
-                <compilerVersion>${java.version}</compilerVersion>
-                <encoding>UTF-8</encoding>
-            </configuration>
-        </plugin>
-        <plugin>
+    <groupId>net.casumo.test</groupId>
+    <artifactId>casumo-test</artifactId>
+    <version>0.1</version>
+    <packaging>war</packaging>
+    <name>Casumo Test</name>
+
+    <properties>
+        <java-version>1.8</java-version>
+        <servlet-api-version>3.1.0</servlet-api-version>
+        <maven-compiler-plugin-version>3.3</maven-compiler-plugin-version>
+        <jetty-maven-plugin-version>9.3.0.M2</jetty-maven-plugin-version>
+        <spring-framework-version>4.2.0.RELEASE</spring-framework-version>
+        <org.slf4j-version>1.7.12</org.slf4j-version>
+        <log4j-version>1.2.17</log4j-version>
+        <gson-version>2.3.1</gson-version>
+        <commons-io-version>2.4</commons-io-version>
+    </properties>
+
+    <dependencies>
+        <!-- Servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet-api-version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-maven-plugin</artifactId>
-            <version>${jetty-maven-plugin-version}</version>
-        </plugin>
-    </plugins>
-    <finalName>bsplatform</finalName>
-    <filters>
-        <filter>src/main/resources/logging/logging.api.${target-platform}.properties</filter>
-    </filters>
-    <resources>
-        <resource>
-            <directory>src/main/resources</directory>
-            <filtering>true</filtering>
-        </resource>
-    </resources>
-</build>
+            <artifactId>jetty-servlets</artifactId>
+            <version>9.3.2.v20150730</version>
+        </dependency>
+
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring-framework-version}</version>
+            <exclusions>
+                <!-- Exclude Commons Logging in favor of SLF4j -->
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring-framework-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>4.2.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>4.0.4.RELEASE</version>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${org.slf4j-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${org.slf4j-version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${org.slf4j-version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- core -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.5.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io-version}</version>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
+        </dependency>
+
+        <!-- Others -->
+        <dependency>
+            <groupId>com.google.api-client</groupId>
+            <artifactId>google-api-client</artifactId>
+            <version>1.20.0</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>localhost</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <target-platform>localhost</target-platform>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>2.18.1</version>
+                        <executions>
+                            <execution>
+                                <id>integration-test</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>verify</id>
+                                <goals>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin-version}</version>
+                <configuration>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
+                    <compilerVersion>${java.version}</compilerVersion>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty-maven-plugin-version}</version>
+            </plugin>
+        </plugins>
+        <finalName>casumo</finalName>
+        <filters>
+            <filter>src/main/resources/logging/logging.api.${target-platform}.properties</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
 </project>
