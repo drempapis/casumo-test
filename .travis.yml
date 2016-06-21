@@ -1,0 +1,15 @@
+language: java
+jdk:
+  - oraclejdk8
+sudo: false
+os:
+  - linux
+cache:
+  directories:
+    - $HOME/.m2
+env:
+  global:
+    - MAVEN_OPTS="-Xms4g -Xmx4g"
+    - JAVA_OPTS="-Xms4g -Xmx4g"
+
+script: mvn clean install 
